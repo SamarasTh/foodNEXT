@@ -1,10 +1,19 @@
-<div class="card" style="width: 15rem ;">
-  <h4 class="text-center"> {{ uname }}</h4>
-  <img
-    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-    class="clard-img" alt="user">
-  <div class="card-body">
-    <h5 class="text-center card-title">{{uname}}</h5>
-    <p class="card-text"> </p>
+<section id="stores" class="service-section pt-150 ">
+  <div class="container   ">
+    <div class="section-title text-center mb-10">
+      <span class="wow fadeInUp" data-wow-delay=".2s"> Kαταστήματα. .	</span>
+    </div>
+    <div class="row">
+      <div *ngFor="let store of stores" class="card-img-overlay " class="card-shadow col-lg-6 col-md-4   mt-5" style="width: 20rem;">
+        <div class="card-body shadow-lg ">
+          <h5 class="card-title text-center">{{store.name}}</h5>
+          <span class="text-center d-block">{{store.storeCategory}} </span>
+          <img src="{{ store.imgUrl }}" class="img-thumbnail " alt="" />
+           <a routerLink="/products" class="btn menubtn d-block"> Δες τo Μενού</a>
+        </div>
+
+      </div>
+    </div>
   </div>
-</div>
+
+</section>

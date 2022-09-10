@@ -1,7 +1,7 @@
 export class StoreCategory {
 
   id?: Number;
-  storeCategory?: String;
+  name?: String;
   imgUrl?: String;
 
 

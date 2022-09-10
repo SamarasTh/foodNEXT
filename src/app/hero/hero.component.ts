@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreCategory } from '../model/storeCategory';
 
 @Component({
   selector: 'app-hero',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeroComponent implements OnInit {
 
   constructor() { }
-
+  storeCategories: StoreCategory[] = [];
   ngOnInit(): void {
   }
 

@@ -5,4 +5,5 @@ export class Store {
   name?: String;
   address?: String;
   productList?: any[];
+  imgUrl?:String;
 }

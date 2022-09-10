@@ -30,21 +30,10 @@ export class StoreCategoryComponent implements OnInit {
 
 
     ngOnInit(): void {
-      // this.unames = this.service.get();
-      this.getStores();
       this.getStoreCategories();
     }
 
 
-    getStores() {
-      this.storesObservable.subscribe(
-        (res: ApiResponse<Store>) => {
-          console.log(res);
-          this.stores = res.data;
-          console.log(this.stores);
-        }
-      );
-    }
 
     getStoreCategories() {
       this.storeCategoryObservable.subscribe(
