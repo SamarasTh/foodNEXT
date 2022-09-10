@@ -1,8 +1,9 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { DataService } from './../service/data.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../model/apiResponse';
 import { Store } from '../model/store';
-import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-stores',
@@ -12,31 +13,42 @@ import { DataService } from '../service/data.service';
 export class StoresComponent implements OnInit {
 
   @Input()
-  uname:any;
-    private storesObservable : Observable<ApiResponse<Store>> ;
-    stores: Store[] = [];
+
+  // private storesObservable: Observable<ApiResponse<Store>>;
+
+  stores: Store[] = [];
+  storeCategoryId: String  = '';
+  paramsObject: any;
 
 
-    constructor(private service: DataService) {
-      this.storesObservable = this.service.getStores();
-    }
+  constructor(private service: DataService, private route: ActivatedRoute) {
+    // this.storesObservable = this.service.getStoresByStoreCategoryId(this.storeCategoryId);
+
+  }
 
 
 
-    ngOnInit(): void {
-      this.getStores();
-    }
+
+  ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('storeCategoryId');
+    this.storeCategoryId = id?id:'';
+    this.getStores(this.storeCategoryId);
 
 
-    getStores() {
-      this.storesObservable.subscribe(
-        (res: ApiResponse<Store>) => {
-          console.log(res);
-          this.stores = res.data;
-          console.log(this.stores);
-        }
-      );
-    }
+  }
+
+
+  getStores(id:String) {
+    this.service.getStoresByStoreCategoryId(id).subscribe(
+      (res: ApiResponse<Store>) => {
+        console.log(res);
+        this.stores = res.data;
+        console.log(this.stores);
+      }
+    );
+  }
+
+
 
 
 

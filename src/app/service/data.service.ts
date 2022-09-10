@@ -21,12 +21,17 @@ export class DataService {
     return this.http.get<ApiResponse<Product>>(this.baseUrl + '/products');
   }
 
+  getStoresByStoreCategoryId(storeCategoryId:String ): Observable<ApiResponse<Store>>{
+
+    return this.http.get<ApiResponse<Store>>(this.baseUrl + '/stores/store-by-category?storeCategoryId='+ storeCategoryId)
+  }
+
   getStores(): Observable<ApiResponse<Store>> {
     return this.http.get<ApiResponse<Store>>(this.baseUrl + '/stores');
   }
 
   getStoreCategories(): Observable<ApiResponse<StoreCategory>> {
-    return this.http.get<ApiResponse<StoreCategory>>(this.baseUrl + '/categories/all');
+    return this.http.get<ApiResponse<StoreCategory>>(this.baseUrl + '/categories');
   }
 
 }

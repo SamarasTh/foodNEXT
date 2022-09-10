@@ -13,7 +13,7 @@ import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   { path: 'products' , component: ProductComponent},
-  { path: 'stores' , component: StoresComponent},
+  { path: 'stores/:storeCategoryId' , component: StoresComponent},
   { path: 'categories' , component: StoreCategoryComponent},
   { path: 'about' , component: AboutComponent},
   { path: 'service' , component: DeliveryComponent},

@@ -7,7 +7,7 @@
       <div *ngFor="let store of stores" class="card-img-overlay " class="card-shadow col-lg-6 col-md-4   mt-5" style="width: 20rem;">
         <div class="card-body shadow-lg ">
           <h5 class="card-title text-center">{{store.name}}</h5>
-          <span class="text-center d-block">{{store.storeCategory}} </span>
+          <span class="text-center d-block">{{store.storeCategory.name}} </span>
           <img src="{{ store.imgUrl }}" class="img-thumbnail " alt="" />
            <a routerLink="/products" class="btn menubtn d-block"> Δες τo Μενού</a>
         </div>

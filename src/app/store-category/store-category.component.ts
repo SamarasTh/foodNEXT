@@ -2,7 +2,6 @@ import { StoreCategory } from './../model/storeCategory';
 import { Component,Input, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { ApiResponse } from '../model/apiResponse';
-import { Store } from '../model/store';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,27 +12,17 @@ import { Observable } from 'rxjs';
 export class StoreCategoryComponent implements OnInit {
 
 
-  @Input()
-  uname:any;
-    unames: any;
-    private storesObservable : Observable<ApiResponse<Store>> ;
     private storeCategoryObservable : Observable<ApiResponse<StoreCategory>> ;
-    stores: Store[] = [];
     storeCategories: StoreCategory[] = [];
 
-
     constructor(private service: DataService) {
-      this.storesObservable = this.service.getStores();
       this.storeCategoryObservable= this.service.getStoreCategories();
     }
 
-
-
     ngOnInit(): void {
       this.getStoreCategories();
+      
     }
-
-
 
     getStoreCategories() {
       this.storeCategoryObservable.subscribe(
