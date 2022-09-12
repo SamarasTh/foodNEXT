@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../model/apiResponse';
 import { Product } from '../model/product';
@@ -11,20 +12,24 @@ import { DataService } from '../service/data.service';
 })
 export class ProductComponent implements OnInit {
   @Input()
-  uname: any;
-  private productObservable: Observable<ApiResponse<Product>>;
+
+  // private productObservable: Observable<ApiResponse<Product>>;
   products: Product[] = [];
-  constructor(private service: DataService) {
-    this.productObservable = this.service.getProducts();
+  storeId: String  = '';
+
+  constructor(private service: DataService, private route: ActivatedRoute) {
+    // this.productObservable = this.service.getProducts();
   }
 
   ngOnInit(): void {
-    this.getProducts();
+    let id = this.route.snapshot.paramMap.get('storeId');
+    this.storeId = id?id:'';
+    this.getProducts(this.storeId);
   }
 
 
-  getProducts() {
-    this.productObservable.subscribe(
+  getProducts(id:String) {
+    this.service.getProductsByStoreId(id).subscribe(
       (res: ApiResponse<Product>) => {
         console.log(res);
         this.products = res.data;

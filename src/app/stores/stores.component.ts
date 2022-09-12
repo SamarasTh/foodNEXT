@@ -18,16 +18,12 @@ export class StoresComponent implements OnInit {
 
   stores: Store[] = [];
   storeCategoryId: String  = '';
-  paramsObject: any;
 
 
   constructor(private service: DataService, private route: ActivatedRoute) {
     // this.storesObservable = this.service.getStoresByStoreCategoryId(this.storeCategoryId);
 
   }
-
-
-
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('storeCategoryId');

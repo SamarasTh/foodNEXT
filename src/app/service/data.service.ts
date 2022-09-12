@@ -21,6 +21,11 @@ export class DataService {
     return this.http.get<ApiResponse<Product>>(this.baseUrl + '/products');
   }
 
+  getProductsByStoreId(storeId:String ): Observable<ApiResponse<Product>>{
+
+    return this.http.get<ApiResponse<Product>>(this.baseUrl + '/products/products-by-store?storeId='+ storeId)
+  }
+
   getStoresByStoreCategoryId(storeCategoryId:String ): Observable<ApiResponse<Store>>{
 
     return this.http.get<ApiResponse<Store>>(this.baseUrl + '/stores/store-by-category?storeCategoryId='+ storeCategoryId)
