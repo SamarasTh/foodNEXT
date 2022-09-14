@@ -14,14 +14,12 @@ export class StoresComponent implements OnInit {
 
   @Input()
 
-  // private storesObservable: Observable<ApiResponse<Store>>;
 
   stores: Store[] = [];
   storeCategoryId: String  = '';
 
 
   constructor(private service: DataService, private route: ActivatedRoute) {
-    // this.storesObservable = this.service.getStoresByStoreCategoryId(this.storeCategoryId);
 
   }
 

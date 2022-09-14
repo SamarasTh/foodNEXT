@@ -3,7 +3,7 @@ export class Product {
   id?: Number;
   serial?:Number;
   name?: String;
-  descirption?: String;
+  description?: String;
   productCategory?: String;
   price?:Number;
   store?:String;

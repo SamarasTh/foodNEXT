@@ -1,4 +1,5 @@
-import { HomeBottomComponent } from './home-bottom/home-bottom.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { HomeComponent } from './home/home.component';
 import { HeroComponent } from './hero/hero.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -8,20 +9,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreCategoryComponent } from './store-category/store-category.component';
 import { StoresComponent } from './stores/stores.component';
-import { HomeTopComponent } from './home-top/home-top.component';
 import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   { path: 'products/:storeId' , component: ProductComponent},
   { path: 'stores/:storeCategoryId' , component: StoresComponent},
+  { path: 'shopping-cart' , component: ShoppingCartComponent},
   { path: 'categories' , component: StoreCategoryComponent},
   { path: 'about' , component: AboutComponent},
   { path: 'service' , component: DeliveryComponent},
   { path: 'footer' , component: FooterComponent},
   { path: 'header' , component: HeaderComponent},
   { path: 'hero' , component: HeroComponent},
-  { path: 'home' , component: HomeBottomComponent},
-  { path: '**' , component: HomeTopComponent},
+  { path: 'home' , component: HomeComponent},
+  { path: '**' , component: HomeComponent},
 
 ];
 
@@ -30,5 +31,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const  routingComponents =[StoresComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeBottomComponent, HomeTopComponent]
+export const  routingComponents =[StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent]
 
