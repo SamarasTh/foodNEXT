@@ -9,13 +9,15 @@ export class ShoppingCartComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor() {
+    // localStorage.setItem('myCart', )
+  }
 
   async ngOnInit() {
 
   }
 
   clearCart(){
-    
+
   }
 }

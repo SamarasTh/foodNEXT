@@ -17,9 +17,8 @@
               <span class="toggler-icon"></span>
               <span class="toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-
-
               <!-- mx-auto -->
                 <div class="col-md-3 ml-3 ">
                   <div class="input-group">
@@ -40,8 +39,7 @@
                 <li class="nav-item">
                   <a class="nav-link" routerLink="/shopping-cart">
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span class="badge badge-warning badge-pill">
-                    <!-- *ngIf="cart$ | async as cart">{{ cart.totalItemsCount }} -->
+                    <span class="badge badge-warning badge-pill">{{ this.totalNumOfCartItems}}
                   </span>
                   </a>
                 </li>

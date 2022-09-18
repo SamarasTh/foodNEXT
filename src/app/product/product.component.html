@@ -9,7 +9,7 @@
         <div class="card-body shadow-lg ">
           <h5 class="card-title text-center">{{product.name}}</h5>
           <h6 class="card-body text-center">{{product.price}} €</h6>
-          <a href="#" class=" btn menubtn d-block"> Προσθήκη στο καλάθι </a>
+          <button (click)="addToCart(product)" class="btn menubtn d-block"> Προσθήκη στο καλάθι </button>
         </div>
 
       </div>

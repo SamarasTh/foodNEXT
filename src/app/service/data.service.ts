@@ -39,4 +39,12 @@ export class DataService {
     return this.http.get<ApiResponse<StoreCategory>>(this.baseUrl + '/categories');
   }
 
+  loadFromStorage<T>(key: string): T {
+    const storedValue = localStorage.getItem(key) as string;
+    return JSON.parse(storedValue);
+  }
+
+  saveToStorage(key: string, value: any){
+    localStorage.setItem(key,  JSON.stringify(value));
+  }
 }
