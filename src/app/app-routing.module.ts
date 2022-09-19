@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreCategoryComponent } from './store-category/store-category.component';
 import { StoresComponent } from './stores/stores.component';
 import { ProductComponent } from './product/product.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'products/:storeId' , component: ProductComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'categories' , component: StoreCategoryComponent},
   { path: 'about' , component: AboutComponent},
   { path: 'service' , component: DeliveryComponent},
+  { path: 'login' , component: LoginComponent},
   { path: 'footer' , component: FooterComponent},
   { path: 'header' , component: HeaderComponent},
   { path: 'hero' , component: HeroComponent},
