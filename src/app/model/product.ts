@@ -4,7 +4,7 @@ export class Product {
   name?: String;
   description?: String;
   productCategory?: String;
-  price?:Number;
+  price?:number;
   store?:String;
 
   constructor(id:Number){

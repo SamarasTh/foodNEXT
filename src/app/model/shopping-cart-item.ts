@@ -3,12 +3,11 @@ export class ShoppingCartItem {
     id: Number;
     name?: String;
     description?: String;
-    price?: Number;
+    price?: number ;
     quantity?: number;
 
     constructor(id:Number){
       this.id = id;
     }
-
 
 }

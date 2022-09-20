@@ -1,3 +1,4 @@
+import { ShoppingCart } from './../model/shopping-cart';
 import { StoreCategory } from './../model/storeCategory';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -47,4 +48,10 @@ export class DataService {
   saveToStorage(key: string, value: any){
     localStorage.setItem(key,  JSON.stringify(value));
   }
+
+
+
+
+
+
 }

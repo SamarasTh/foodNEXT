@@ -57,4 +57,10 @@ export class ProductComponent implements OnInit {
     this.service.saveToStorage('myCart', this.myCart);
     console.log(this.myCart);
   }
+
+  // removeFromCart(product:Product){
+  //   this.myCart.removeItem(product)
+  //   this.service.saveToStorage('myCart', this.myCart);
+  //   console.log(this.myCart);
+  // }
 }
