@@ -1,3 +1,4 @@
+import { SignupComponent } from './signup/signup.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { HomeComponent } from './home/home.component';
 import { HeroComponent } from './hero/hero.component';
@@ -11,6 +12,7 @@ import { StoreCategoryComponent } from './store-category/store-category.componen
 import { StoresComponent } from './stores/stores.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
 
 const routes: Routes = [
   { path: 'products/:storeId' , component: ProductComponent},
@@ -25,7 +27,9 @@ const routes: Routes = [
   { path: 'home' , component: HomeComponent},
   { path: '' , component: HomeComponent},
   { path: '**', component: LoginComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path:'signup', component:SignupComponent},
+  { path:'forgot-password', component:ForgotPasswordComponent }
 
 ];
 
@@ -34,5 +38,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const  routingComponents =[StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent, LoginComponent]
+export const  routingComponents =[StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent, LoginComponent, ForgotPasswordComponent,SignupComponent]
 
