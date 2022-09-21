@@ -49,6 +49,12 @@ export class DataService {
     localStorage.setItem(key,  JSON.stringify(value));
   }
 
+  removeFromStorage(){
+    localStorage.removeItem('myCart');
+  }
+
+
+
 
 
 

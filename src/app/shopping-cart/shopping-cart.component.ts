@@ -12,6 +12,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   myCart: ShoppingCart = new ShoppingCart(-1);
+  totalNumOfCartItems: number = 0;
   constructor(private service: DataService) {
   }
 
@@ -25,8 +26,13 @@ export class ShoppingCartComponent implements OnInit {
     if (cart && cart.storeId != -1) {
       this.myCart.storeId = cart.storeId;
       this.myCart.items = cart.items;
-      // this.totalNumOfCartItems = this.myCart.calculateTotalCartItems();
+      this.totalNumOfCartItems = this.myCart.calculateTotalCartItems();
     }
+  }
+
+  clearCart(){
+    this.service.removeFromStorage();
+    console.log("im inside clearcart")
   }
 }
 
