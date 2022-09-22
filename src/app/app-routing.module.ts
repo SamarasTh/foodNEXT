@@ -1,3 +1,4 @@
+import { SignupComponent } from './signup/signup.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { HomeComponent } from './home/home.component';
 import { HeroComponent } from './hero/hero.component';
@@ -11,6 +12,7 @@ import { StoreCategoryComponent } from './store-category/store-category.componen
 import { StoresComponent } from './stores/stores.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
 
 const routes: Routes = [
   { path: 'products/:storeId' , component: ProductComponent},
@@ -23,9 +25,11 @@ const routes: Routes = [
   { path: 'header' , component: HeaderComponent},
   { path: 'hero' , component: HeroComponent},
   { path: 'home' , component: HomeComponent},
+
   // { path: '' , component: HomeComponent},
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent }
+
 
 ];
 
