@@ -34,9 +34,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-<<<<<<< HEAD
-export const  routingComponents =[StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent, ProductComponent]
-=======
+
 export const  routingComponents =[StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent, LoginComponent]
->>>>>>> c85c911d086ba0eb107580f7566f1a5acfdd0ea7
+
 
