@@ -1,5 +1,4 @@
 import { Product } from './product'
-import { Store } from './store'
 import { ShoppingCartItem } from './shopping-cart-item'
 
 export class ShoppingCart {
@@ -32,22 +31,6 @@ export class ShoppingCart {
         }
       }
     }
-  }
-
-  removeItem(item: ShoppingCartItem): void {
-    let itemQuantity = this.calculateProductQuantity(item.id)
-    if (itemQuantity === 1) {
-      let selectedItem = this.items.find(item => item.id === item.id);
-      selectedItem ? this.items.indexOf(selectedItem) : -1;
-      itemQuantity = 0;
-      this.items.forEach((item, index) => {
-        if (item.id === item.id) this.items.splice(index, 1);
-      });
-    } else {
-      itemQuantity = itemQuantity - 1;
-      console.log(itemQuantity);
-    }
-
   }
 
   convertProductToCartItem(product: Product): ShoppingCartItem {

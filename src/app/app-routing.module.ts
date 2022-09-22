@@ -25,11 +25,11 @@ const routes: Routes = [
   { path: 'header' , component: HeaderComponent},
   { path: 'hero' , component: HeroComponent},
   { path: 'home' , component: HomeComponent},
-  { path: '' , component: HomeComponent},
-  { path: '**', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path:'signup', component: SignupComponent},
-  { path:'forgot-password', component:ForgotPasswordComponent }
+
+  // { path: '' , component: HomeComponent},
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent }
+
 
 ];
 
@@ -38,5 +38,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const  routingComponents =[StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent, LoginComponent, ForgotPasswordComponent,SignupComponent]
+
+export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent,LoginComponent]
+
 

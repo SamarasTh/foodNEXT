@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,10 +21,10 @@ export class LoginComponent implements OnInit {
         return;
     }
     //True if all the fields are filled
-    if(this.submitted)
-    {
-      alert("Great!!");
-    }
+    // if(this.submitted)
+    // {
+    //   alert("Great!!");
+    // }
 
   }
     //login form
