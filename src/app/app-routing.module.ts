@@ -23,8 +23,8 @@ const routes: Routes = [
   { path: 'header' , component: HeaderComponent},
   { path: 'hero' , component: HeroComponent},
   { path: 'home' , component: HomeComponent},
-  { path: '' , component: HomeComponent},
-  { path: '**', component: LoginComponent },
+  // { path: '' , component: HomeComponent},
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent }
 
 ];
@@ -35,6 +35,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const  routingComponents =[StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent, LoginComponent]
+export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent,LoginComponent]
 
 
