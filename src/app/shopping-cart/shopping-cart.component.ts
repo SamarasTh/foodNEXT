@@ -2,6 +2,7 @@ import { ShoppingCartItem } from './../model/shopping-cart-item';
 import { DataService } from './../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCart } from '../model/shopping-cart';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,14 +11,13 @@ import { ShoppingCart } from '../model/shopping-cart';
 })
 export class ShoppingCartComponent implements OnInit {
 
-
   myCart: ShoppingCart = new ShoppingCart(-1);
   totalNumOfCartItems: number = 0;
+
   constructor(private service: DataService) {
   }
 
   ngOnInit() {
-
     this.loadCart();
   }
 
@@ -30,9 +30,9 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  clearCart(){
+  clearCart() {
     this.service.removeFromStorage();
-    console.log("im inside clearcart")
   }
+
 }
 

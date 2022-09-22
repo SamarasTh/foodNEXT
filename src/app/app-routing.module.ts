@@ -18,18 +18,17 @@ const routes: Routes = [
   { path: 'products/:storeId' , component: ProductComponent},
   { path: 'stores/:storeCategoryId' , component: StoresComponent},
   { path: 'shopping-cart' , component: ShoppingCartComponent},
-  { path: 'categories' , component: StoreCategoryComponent},
+  { path: 'home/categories' , component: StoreCategoryComponent},
   { path: 'about' , component: AboutComponent},
   { path: 'service' , component: DeliveryComponent},
   { path: 'footer' , component: FooterComponent},
   { path: 'header' , component: HeaderComponent},
   { path: 'hero' , component: HeroComponent},
   { path: 'home' , component: HomeComponent},
-
-  // { path: '' , component: HomeComponent},
+  // { path: '**' , component: HomeComponent},
   { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent }
-
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent }
 
 ];
 
@@ -39,6 +38,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent,LoginComponent]
+export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent,LoginComponent,SignupComponent]
 
 

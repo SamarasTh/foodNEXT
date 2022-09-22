@@ -1,8 +1,9 @@
+import { ShoppingCartItem } from './../model/shopping-cart-item';
 import { ShoppingCart } from './../model/shopping-cart';
 import { StoreCategory } from './../model/storeCategory';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { ApiResponse } from '../model/apiResponse';
 import { Store } from '../model/store';
 import { Product } from '../model/product';
@@ -52,6 +53,7 @@ export class DataService {
   removeFromStorage(){
     localStorage.removeItem('myCart');
   }
+
 
 
 

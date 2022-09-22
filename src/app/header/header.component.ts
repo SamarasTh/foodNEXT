@@ -17,11 +17,9 @@ export class HeaderComponent implements OnInit {
   constructor(private service: DataService) {
     document.addEventListener('storage', () => {
       this.loadCart();
-      console.log('run run')
     })
     window.addEventListener('storage', () => {
       this.loadCart();
-      console.log('run run')
     })
   }
 
@@ -31,7 +29,6 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:storage')
   onStorageChange() {
-    console.log('change...');
   }
 
   loadCart() {

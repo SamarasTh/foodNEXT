@@ -35,9 +35,7 @@ export class StoresComponent implements OnInit {
   getStores(id:String) {
     this.service.getStoresByStoreCategoryId(id).subscribe(
       (res: ApiResponse<Store>) => {
-        console.log(res);
         this.stores = res.data;
-        console.log(this.stores);
       }
     );
   }
