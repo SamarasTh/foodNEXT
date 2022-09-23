@@ -6,13 +6,14 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { AboutComponent } from './about/about.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreCategoryComponent } from './store-category/store-category.component';
 import { StoresComponent } from './stores/stores.component';
 import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   { path: 'products/:storeId' , component: ProductComponent},
@@ -28,7 +29,9 @@ const routes: Routes = [
   // { path: '**' , component: HomeComponent},
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent }
+  { path: 'signup', component: SignupComponent },
+  {path: 'checkout', component: CheckoutComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent}
 
 ];
 
@@ -38,6 +41,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent,LoginComponent,SignupComponent]
+export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent,LoginComponent,SignupComponent, CheckoutComponent, ForgotPasswordComponent]
 
 
