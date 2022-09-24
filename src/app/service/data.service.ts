@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { ApiResponse } from '../model/apiResponse';
 import { Store } from '../model/store';
 import { Product } from '../model/product';
+import { Address } from '../model/address';
 
 
 
@@ -19,27 +20,22 @@ export class DataService {
 
   baseUrl: String = 'http://localhost:8080';
 
-  getProducts(): Observable<ApiResponse<Product>> {
-    return this.http.get<ApiResponse<Product>>(this.baseUrl + '/products');
+  getProductsByStoreId(storeId:String ): Observable<ApiResponse<Product[]>>{
+
+    return this.http.get<ApiResponse<Product[]>>(this.baseUrl + '/stores/products-by-store?storeId='+ storeId)
   }
 
-  getProductsByStoreId(storeId:String ): Observable<ApiResponse<Product>>{
+  getStoresByStoreCategoryId(storeCategoryId:String ): Observable<ApiResponse<Store[]>>{
 
-    return this.http.get<ApiResponse<Product>>(this.baseUrl + '/stores/products-by-store?storeId='+ storeId)
+    return this.http.get<ApiResponse<Store[]>>(this.baseUrl + '/stores/store-by-category?storeCategoryId='+ storeCategoryId)
   }
 
-  getStoresByStoreCategoryId(storeCategoryId:String ): Observable<ApiResponse<Store>>{
-
-    return this.http.get<ApiResponse<Store>>(this.baseUrl + '/stores/store-by-category?storeCategoryId='+ storeCategoryId)
+  getStoresByName(storename:String): Observable<ApiResponse<Store[]>>{
+    return this.http.get<ApiResponse<Store[]>>(this.baseUrl + '/stores/stores-by-name?storeName='+ storename);
   }
 
-
-  getStores(): Observable<ApiResponse<Store>> {
-    return this.http.get<ApiResponse<Store>>(this.baseUrl + '/stores');
-  }
-
-  getStoreCategories(): Observable<ApiResponse<StoreCategory>> {
-    return this.http.get<ApiResponse<StoreCategory>>(this.baseUrl + '/categories');
+  getStoreCategories(): Observable<ApiResponse<StoreCategory[]>> {
+    return this.http.get<ApiResponse<StoreCategory[]>>(this.baseUrl + '/categories');
   }
 
   loadFromStorage<T>(key: string): T {

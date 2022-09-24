@@ -1,9 +1,11 @@
+import { Store } from './../model/store';
 import { DataService } from './../service/data.service';
 import { ShoppingCart } from './../model/shopping-cart';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StoreCategory } from '../model/storeCategory';
 import { ApiResponse } from '../model/apiResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,52 +16,24 @@ export class HeaderComponent implements OnInit {
 
   title = 'angular-text-search-highlight';
   searchText = '';
-  categories = [
-    'Pizza',
-    'Burger',
-    'Souvlakia',
-    'Coffee',
-    'Chinese',
-    'Pasta',
-    'Vegetarian',
-    'Homemade',
-    'Sweet',
-    'Groceries',
-    'Sushi',
-  ]
-
-
-
+  categories:StoreCategory[]= [];
   myCart: ShoppingCart = new ShoppingCart(-1);
   totalNumOfCartItems: number = 0;
+  stores: Store[]=[];
+  selectedStore?:Store;
 
-  private storeCategoryObservable: Observable<ApiResponse<StoreCategory>>;
-  storeCategories: StoreCategory[] = [];
-
-
-  constructor(private service: DataService) {
-    document.addEventListener('storage', () => {
-      this.loadCart();
-    })
-    window.addEventListener('storage', () => {
-      this.loadCart();
-    })
-    this.storeCategoryObservable = this.service.getStoreCategories();
+  constructor(private service: DataService, private router:Router) {
   }
-
-
 
   ngOnInit(): void {
     this.loadCart();
-    this.getStoreCategories();
   }
 
+  getStoreByStoreName(name:any){
+     this.service.getStoresByName(name).subscribe(
+      (res: ApiResponse<Store[]>) => {
+        this.stores =res.data;
 
-
-  getStoreCategories() {
-    this.storeCategoryObservable.subscribe(
-      (res: ApiResponse<StoreCategory>) => {
-        this.storeCategories = res.data;
       }
     );
   }
@@ -69,7 +43,6 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
   loadCart() {
     let cart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
     if (cart && cart.storeId != -1) {
@@ -77,5 +50,12 @@ export class HeaderComponent implements OnInit {
       this.myCart.items = cart.items;
       this.totalNumOfCartItems = this.myCart.calculateTotalCartItems();
     }
+  }
+
+  navigateToStore(){
+    if(this.selectedStore){
+    this.router.navigateByUrl('/products/'+ this.selectedStore)
+    // console.log(this.selectedStore)
+  }
   }
 }

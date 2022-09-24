@@ -31,7 +31,6 @@
               {{item.quantity}}
             </td>
             <td class="text-right">
-              <!-- {{ item.price  | currency:'EUR'}} -->
               {{(item.price && item.quantity)? (item.price * item.quantity | currency:'EUR')  : 0 }}
             </td>
           </tr>

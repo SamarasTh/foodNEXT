@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class StoreCategoryComponent implements OnInit {
 
 
-    private storeCategoryObservable : Observable<ApiResponse<StoreCategory>> ;
+    private storeCategoryObservable : Observable<ApiResponse<StoreCategory[]>> ;
     storeCategories: StoreCategory[] = [];
 
     constructor(private service: DataService) {
@@ -21,12 +21,12 @@ export class StoreCategoryComponent implements OnInit {
 
     ngOnInit(): void {
       this.getStoreCategories();
-      
+
     }
 
     getStoreCategories() {
       this.storeCategoryObservable.subscribe(
-        (res: ApiResponse<StoreCategory>) => {
+        (res: ApiResponse<StoreCategory[]>) => {
           this.storeCategories = res.data;
         }
       );

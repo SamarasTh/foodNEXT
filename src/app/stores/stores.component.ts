@@ -1,7 +1,7 @@
 import { StoreCategory } from './../model/storeCategory';
 import { DataService } from './../service/data.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Event, ActivatedRoute, Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../model/apiResponse';
 import { Store } from '../model/store';
@@ -17,21 +17,27 @@ export class StoresComponent implements OnInit {
   stores: Store[] = [];
   storeCategoryId: String  = '';
 
-  constructor(private service: DataService, private route: ActivatedRoute) {
-
+  constructor(private service: DataService, private route: ActivatedRoute,
+     public router:Router) {
+    this.router.events.subscribe((e:Event) =>{
+      if (e instanceof NavigationEnd){
+        // console.log(e);
+        let id = this.route.snapshot.paramMap.get('storeCategoryId');
+        // console.log(id);
+        this.storeCategoryId = id?id:'';
+        this.getStores(this.storeCategoryId);
+      }
+    });
   }
+
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('storeCategoryId');
-    this.storeCategoryId = id?id:'';
-    this.getStores(this.storeCategoryId);
-
-  }
+   }
 
 
   getStores(id:String) {
     this.service.getStoresByStoreCategoryId(id).subscribe(
-      (res: ApiResponse<Store>) => {
+      (res: ApiResponse<Store[]>) => {
         this.stores = res.data;
       }
     );
