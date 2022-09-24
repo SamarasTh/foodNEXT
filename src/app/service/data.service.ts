@@ -33,6 +33,7 @@ export class DataService {
     return this.http.get<ApiResponse<Store>>(this.baseUrl + '/stores/store-by-category?storeCategoryId='+ storeCategoryId)
   }
 
+
   getStores(): Observable<ApiResponse<Store>> {
     return this.http.get<ApiResponse<Store>>(this.baseUrl + '/stores');
   }

@@ -1,3 +1,4 @@
+import { StoreCategory } from './../model/storeCategory';
 import { DataService } from './../service/data.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -13,11 +14,8 @@ import { Store } from '../model/store';
 export class StoresComponent implements OnInit {
 
   @Input()
-
-
   stores: Store[] = [];
   storeCategoryId: String  = '';
-
 
   constructor(private service: DataService, private route: ActivatedRoute) {
 
@@ -27,7 +25,6 @@ export class StoresComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('storeCategoryId');
     this.storeCategoryId = id?id:'';
     this.getStores(this.storeCategoryId);
-
 
   }
 
