@@ -2,10 +2,10 @@ import { Store } from './../model/store';
 import { DataService } from './../service/data.service';
 import { ShoppingCart } from './../model/shopping-cart';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { StoreCategory } from '../model/storeCategory';
 import { ApiResponse } from '../model/apiResponse';
 import { Router } from '@angular/router';
+import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  title = 'angular-text-search-highlight';
   searchText = '';
   categories:StoreCategory[]= [];
   myCart: ShoppingCart = new ShoppingCart(-1);
