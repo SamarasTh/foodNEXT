@@ -16,6 +16,7 @@ export class StoresComponent implements OnInit {
   @Input()
   stores: Store[] = [];
   storeCategoryId: String  = '';
+  storeCategory:StoreCategory  = new StoreCategory();
 
   constructor(private service: DataService, private route: ActivatedRoute,
      public router:Router) {
@@ -32,21 +33,28 @@ export class StoresComponent implements OnInit {
 
 
   ngOnInit(): void {
+       // console.log(e);
+       let id = this.route.snapshot.paramMap.get('storeCategoryId');
+       // console.log(id);
+       this.storeCategoryId = id?id:'';
+       this.getStores(this.storeCategoryId);
+       this.getCategory(this.storeCategoryId);
+   }
+
+   getCategory(id:String){
+    this.service.getCategoryById(id).subscribe(
+      (res: ApiResponse<StoreCategory>) =>{
+        this.storeCategory = res.data;
+      }
+    );
    }
 
 
-  getStores(id:String) {
+   getStores(id:String) {
     this.service.getStoresByStoreCategoryId(id).subscribe(
       (res: ApiResponse<Store[]>) => {
         this.stores = res.data;
       }
     );
   }
-
-
-
-
-
-
-
 }

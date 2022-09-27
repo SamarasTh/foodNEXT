@@ -25,10 +25,19 @@ export class DataService {
     return this.http.get<ApiResponse<Product[]>>(this.baseUrl + '/stores/products-by-store?storeId='+ storeId)
   }
 
+  getStoreById(storeId:String): Observable<ApiResponse<Store>>{
+    return this.http.get<ApiResponse<Store>>(this.baseUrl +'/stores/store-by-storeid?storeId='+ storeId)
+  }
+
+  getCategoryById(categoryId:String): Observable<ApiResponse<StoreCategory>>{
+    return this.http.get<ApiResponse<StoreCategory>>(this.baseUrl +'/categories/category-by-categoryId?categoryId='+ categoryId)
+  }
+
   getStoresByStoreCategoryId(storeCategoryId:String ): Observable<ApiResponse<Store[]>>{
 
     return this.http.get<ApiResponse<Store[]>>(this.baseUrl + '/stores/store-by-category?storeCategoryId='+ storeCategoryId)
   }
+
 
   getStoresByName(storename:String): Observable<ApiResponse<Store[]>>{
     return this.http.get<ApiResponse<Store[]>>(this.baseUrl + '/stores/stores-by-name?storeName='+ storename);

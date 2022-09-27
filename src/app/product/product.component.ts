@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router ,Event} from '@angular/router';
 import { ApiResponse } from '../model/apiResponse';
 import { Product } from '../model/product';
 import { DataService } from '../service/data.service';
+import { Store } from '../model/store';
 
 @Component({
   selector: 'app-product',
@@ -16,6 +17,7 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
   storeId: String  = '';
   myCart: ShoppingCart = new ShoppingCart(-1);
+  store: Store= new Store();
 
   constructor(private service: DataService, private route: ActivatedRoute,public router:Router) {
     this.router.events.subscribe((e:Event) =>{
@@ -32,6 +34,7 @@ export class ProductComponent implements OnInit {
     this.storeId = id?id:'';
     this.getProducts(this.storeId);
     this.initCart();
+    this.getStore(this.storeId);
   }
 
   initCart(){
@@ -50,6 +53,14 @@ export class ProductComponent implements OnInit {
     this.service.getProductsByStoreId(id).subscribe(
       (res: ApiResponse<Product[]>) => {
         this.products = res.data;
+      }
+    );
+  }
+
+  getStore(id: String){
+    this.service.getStoreById(id).subscribe(
+      (res:ApiResponse<Store>) => {
+        this.store =res.data;
       }
     );
   }
