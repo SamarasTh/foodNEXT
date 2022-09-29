@@ -1,3 +1,4 @@
+import { CartService } from './../service/cart.service';
 import { ShoppingCartItem } from './../model/shopping-cart-item';
 import { DataService } from './../service/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ export class ShoppingCartComponent implements OnInit {
   myCart: ShoppingCart = new ShoppingCart(-1);
   totalNumOfCartItems: number = 0;
 
-  constructor(private service: DataService) {
+  constructor(private service: DataService, public cartService:CartService) {
   }
 
   ngOnInit() {
