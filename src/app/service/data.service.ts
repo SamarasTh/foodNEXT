@@ -8,6 +8,7 @@ import { ApiResponse } from '../model/apiResponse';
 import { Store } from '../model/store';
 import { Product } from '../model/product';
 import { Address } from '../model/address';
+import { Account } from '../model/account';
 
 
 
@@ -27,6 +28,10 @@ export class DataService {
 
   getStoreById(storeId:String): Observable<ApiResponse<Store>>{
     return this.http.get<ApiResponse<Store>>(this.baseUrl +'/stores/store-by-storeid?storeId='+ storeId)
+  }
+
+  getAccountById(accountId:String): Observable<ApiResponse<Account>>{
+    return this.http.get<ApiResponse<Account>>(this.baseUrl +'/accounts/account-by-accountId?accountId='+ accountId)
   }
 
   getCategoryById(categoryId:String): Observable<ApiResponse<StoreCategory>>{

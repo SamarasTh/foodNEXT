@@ -1,3 +1,4 @@
+import { CartService } from './service/cart.service';
 import { DataService } from './service/data.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,7 +23,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     NgSelectModule
   ],
-  providers: [DataService],
+  providers: [DataService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

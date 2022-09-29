@@ -33,6 +33,8 @@ export class ShoppingCart {
     }
   }
 
+  
+
   convertProductToCartItem(product: Product): ShoppingCartItem {
     let item: ShoppingCartItem = new ShoppingCartItem(product.id);
     item.id = product.id;

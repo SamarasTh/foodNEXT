@@ -1,6 +1,7 @@
+import { CartService } from './../service/cart.service';
 import { ShoppingCart } from './../model/shopping-cart';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router ,Event} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, Event } from '@angular/router';
 import { ApiResponse } from '../model/apiResponse';
 import { Product } from '../model/product';
 import { DataService } from '../service/data.service';
@@ -15,27 +16,45 @@ export class ProductComponent implements OnInit {
   @Input()
 
   products: Product[] = [];
-  storeId: String  = '';
+  storeId: String = '';
   myCart: ShoppingCart = new ShoppingCart(-1);
-  store: Store= new Store();
+  store: Store = new Store();
 
-  constructor(private service: DataService, private route: ActivatedRoute,public router:Router) {
-    this.router.events.subscribe((e:Event) =>{
-      if (e instanceof NavigationEnd){
+  constructor(private service: DataService,
+    private route: ActivatedRoute,
+    public router: Router,
+    private cartService: CartService)
+
+    {
+    this.router.events.subscribe((e: Event) => {
+      if (e instanceof NavigationEnd) {
         let id = this.route.snapshot.paramMap.get('storeId');
-        this.storeId = id?id:'';
+        this.storeId = id ? id : '';
         this.getProducts(this.storeId);
       }
     });
   }
 
+  items$= this.cartService.items$;
+
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('storeId');
-    this.storeId = id?id:'';
+    this.storeId = id ? id : '';
     this.getProducts(this.storeId);
     this.initCart();
     this.getStore(this.storeId);
   }
+
+  addToCart(product) {
+    this.cartService.addToCart(product);
+    this.service.saveToStorage('myCart', this.myCart);
+  }
+
+
+  // addToCart(product: Product){
+  //   this.myCart.addItem(product);
+  //   this.service.saveToStorage('myCart', this.myCart);
+  // }
 
   initCart(){
     let existingCart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
@@ -49,7 +68,9 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  getProducts(id:String) {
+
+
+  getProducts(id: String) {
     this.service.getProductsByStoreId(id).subscribe(
       (res: ApiResponse<Product[]>) => {
         this.products = res.data;
@@ -57,17 +78,12 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  getStore(id: String){
+  getStore(id: String) {
     this.service.getStoreById(id).subscribe(
-      (res:ApiResponse<Store>) => {
-        this.store =res.data;
+      (res: ApiResponse<Store>) => {
+        this.store = res.data;
       }
     );
-  }
-
-  addToCart(product: Product){
-    this.myCart.addItem(product);
-    this.service.saveToStorage('myCart', this.myCart);
   }
 
 

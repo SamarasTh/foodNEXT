@@ -1,3 +1,4 @@
+import { CartService } from './../service/cart.service';
 import { Store } from './../model/store';
 import { DataService } from './../service/data.service';
 import { ShoppingCart } from './../model/shopping-cart';
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
   stores: Store[]=[];
   selectedStore?:Store;
 
-  constructor(private service: DataService, private router:Router) {
+  constructor(private service: DataService, private router:Router, public cartService:CartService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +36,10 @@ export class HeaderComponent implements OnInit {
 
       }
     );
+  }
+
+  displayAddedItems(){
+    this.cartService.items$;
   }
 
   @HostListener('window:storage')
