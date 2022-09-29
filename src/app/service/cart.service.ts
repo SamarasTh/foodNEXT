@@ -18,7 +18,7 @@ export class CartService {
 
   private itemsSubject = new BehaviorSubject<Product[]>([]);
   items$ = this.itemsSubject.asObservable();
-
+// test commit
   addToCart(product: Product) {
     this.items$.pipe(
       take(1),
