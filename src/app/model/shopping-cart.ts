@@ -1,3 +1,4 @@
+import { CartService } from './../service/cart.service';
 import { Product } from './product'
 import { ShoppingCartItem } from './shopping-cart-item'
 
@@ -12,7 +13,7 @@ export class ShoppingCart {
 
   addItem(product: Product): void {
 
-    let itemQuantity = this.calculateProductQuantity(product.id)
+    let itemQuantity = this.calculateProductQuantity(product.id);
     if (itemQuantity === 0) {
       let item: ShoppingCartItem = this.convertProductToCartItem(product);
       item.quantity = 1;
@@ -25,6 +26,7 @@ export class ShoppingCart {
           let newItem: ShoppingCartItem = new ShoppingCartItem(selectedItem.id);
           newItem.description = selectedItem.description;
           newItem.name = selectedItem.name;
+          newItem.imgUrl = selectedItem.imgUrl;
           newItem.price = selectedItem.price;
           newItem.quantity = selectedItem.quantity ? selectedItem.quantity + 1 : 1;
           this.items[index] = newItem;
@@ -33,14 +35,30 @@ export class ShoppingCart {
     }
   }
 
-  
+  reduceQuantityOrRemoveItem(item:ShoppingCartItem): void{
+
+    if(item.quantity ===1){
+      this.removeItemFromArray(this.items, item);
+    }else {
+      item.quantity =item.quantity - 1;
+    }
+  }
+
+   removeItemFromArray<T>(arr: Array<T>, value: T) {
+    const index = arr.indexOf(value);
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+  }
 
   convertProductToCartItem(product: Product): ShoppingCartItem {
     let item: ShoppingCartItem = new ShoppingCartItem(product.id);
     item.id = product.id;
     item.name = product.name;
+    item.imgUrl = product.imgUrl;
     item.description = product.description;
     item.price = product.price;
+
     return item;
   }
 
@@ -71,7 +89,6 @@ export class ShoppingCart {
     });
     return sum;
   }
-
 
 
 }

@@ -19,6 +19,7 @@ export class ProductComponent implements OnInit {
   storeId: String = '';
   myCart: ShoppingCart = new ShoppingCart(-1);
   store: Store = new Store();
+  cartEmpty = false;
 
   constructor(private service: DataService,
     private route: ActivatedRoute,
@@ -35,26 +36,25 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  items$= this.cartService.items$;
-
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('storeId');
     this.storeId = id ? id : '';
     this.getProducts(this.storeId);
     this.initCart();
     this.getStore(this.storeId);
+    this.showQuickCheckout();
+  }
+
+  showQuickCheckout(){
+    if (this.myCart.calculateTotalCartItems() > 0){
+        this.cartEmpty=true;
+    }
   }
 
   addToCart(product) {
     this.cartService.addToCart(product);
-    this.service.saveToStorage('myCart', this.myCart);
   }
 
-
-  // addToCart(product: Product){
-  //   this.myCart.addItem(product);
-  //   this.service.saveToStorage('myCart', this.myCart);
-  // }
 
   initCart(){
     let existingCart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');

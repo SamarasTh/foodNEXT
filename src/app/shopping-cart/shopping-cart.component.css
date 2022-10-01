@@ -4,15 +4,23 @@
     border-radius: 100%;
     background-size: cover;
 }
+section{
+  background-image: url('src\assets\img\food-doodle.jpg');
+  background-repeat: repeat;
+  background-size: 100%;
+  background-position: 100%;
+}
 
 .card {
-    margin-bottom: 80px;
-    background: #f3e7e7;
+    margin-bottom: 10px;
+
+
 }
 
 .shoppingcart{
-  margin-top: 130px;
+  margin-top: 90px;
   padding-left: 150px;
+
 
 }
 
@@ -31,3 +39,19 @@ img {
   max-width: 50%;
   height: auto;
 }
+
+
+.cart-btm-img{
+
+  background-image: url('src\assets\img\deliver.jpg');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size:85%;
+}
+
+.bg-color{
+  
+  background-color: #eeeeee;
+}
+
+

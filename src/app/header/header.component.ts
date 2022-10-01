@@ -16,31 +16,33 @@ import { Observable, interval, Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   searchText = '';
-  categories:StoreCategory[]= [];
   myCart: ShoppingCart = new ShoppingCart(-1);
-  totalNumOfCartItems: number = 0;
-  stores: Store[]=[];
-  selectedStore?:Store;
+  stores: Store[] = [];
+  selectedStore?: Store;
 
-  constructor(private service: DataService, private router:Router, public cartService:CartService) {
-  }
+  constructor
+    (
+      private service: DataService,
+      private router: Router,
+      public cartService: CartService) {
 
-  ngOnInit(): void {
+
+      }
+
+  ngOnInit() {
     this.loadCart();
   }
 
-  getStoreByStoreName(name:any){
-     this.service.getStoresByName(name).subscribe(
+  getStoreByStoreName(name: any) {
+    this.service.getStoresByName(name).subscribe(
       (res: ApiResponse<Store[]>) => {
-        this.stores =res.data;
+        this.stores = res.data;
 
       }
     );
   }
 
-  displayAddedItems(){
-    this.cartService.items$;
-  }
+
 
   @HostListener('window:storage')
   onStorageChange() {
@@ -52,14 +54,13 @@ export class HeaderComponent implements OnInit {
     if (cart && cart.storeId != -1) {
       this.myCart.storeId = cart.storeId;
       this.myCart.items = cart.items;
-      this.totalNumOfCartItems = this.myCart.calculateTotalCartItems();
     }
   }
 
-  navigateToStore(){
-    if(this.selectedStore){
-    this.router.navigateByUrl('/products/'+ this.selectedStore)
-    // console.log(this.selectedStore)
-  }
+  navigateToStore() {
+    if (this.selectedStore) {
+      this.router.navigateByUrl('/products/' + this.selectedStore)
+      // console.log(this.selectedStore)
+    }
   }
 }
