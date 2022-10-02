@@ -11,6 +11,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AuthenticationService } from './service/authentication.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     routingComponents,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    CartSummaryComponent
   ],
   imports: [
     BrowserModule,

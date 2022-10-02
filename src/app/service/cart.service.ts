@@ -62,4 +62,8 @@ export class CartService {
     this.service.saveToStorage('myCart', cart);
     return cart;
   }
+
+  clearCart(){
+    this.service.removeFromStorage('myCart');
+  }
 }

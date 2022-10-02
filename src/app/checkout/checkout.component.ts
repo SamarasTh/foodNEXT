@@ -11,10 +11,11 @@ import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss']
+  styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
 
+  myCart: ShoppingCart = new ShoppingCart(-1);
 
   account: Account = new Account(1);
   accountId: String = '1';
@@ -26,6 +27,15 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAccountById(this.accountId);
+    this.loadCart();
+  }
+
+  loadCart() {
+    let cart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
+    if (cart && cart.storeId != -1) {
+      this.myCart.storeId = cart.storeId;
+      this.myCart.items = cart.items;
+    }
   }
 
 

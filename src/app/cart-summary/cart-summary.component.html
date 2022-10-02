@@ -1,11 +1,10 @@
-<section>
-  <div class="container shoppingcart">
+<section >
+  <div class=" shoppingcart ">
 
 
-    <div class="card" style="width: 80%;">
+    <div class="card" style="width: 90%;">
       <div class="card-body">
-        <button class="btn btn-light btn-sm float-right menubtn" (click)="cartService.clearCart()">Clear Cart</button>
-        <h1 class="">Your Shopping Cart</h1>
+        <h1 class="">Cart summary</h1>
         You have <b>{{myCart.calculateTotalCartItems() }}</b> products in your cart right now
 
       </div>
@@ -26,16 +25,14 @@
             </td>
             <td class="pt-3">
               <b> {{ item.name }}</b>
-              <br>
-              {{item.description}}
             </td>
             <td class="text-center">
               <span class="mr-2 pt-4">
-                <button (click)="reduceQuantityOrRemoveCartItem(item)" class="btn btn-md menubtn"><b>-</b></button>
+                <button (click)="reduceQuantityOrRemoveCartItem(item)" class="btn btn-sm menubtn"><b>-</b></button>
               </span>
               <b>{{item.quantity}}</b>
               <span class="ml-2">
-                <button (click)="addToCart(item)" class="btn btn-md menubtn">+</button>
+                <button (click)="addToCart(item)" class="btn btn-sm menubtn">+</button>
               </span>
 
             </td>
@@ -48,18 +45,6 @@
 
           </tr>
         </tbody>
-        <tfoot *ngIf="cartEmpty" class="cart-btm-img bg-color ">
-          <th></th>
-          <th></th>
-          <th></th>
-          <th class="text-center pt-4 pr-3 ">Total: {{ myCart.totalPrice | currency:'EUR' }}</th>
-          <tr>
-            <th colspan="4" class="text-right " >
-              <a  routerLink="/checkout" class="btn btn-md  menubtn">Checkout</a>
-            </th>
-          </tr>
-
-        </tfoot>
       </table>
     </div>
 

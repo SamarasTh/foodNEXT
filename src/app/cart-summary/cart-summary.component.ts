@@ -1,16 +1,17 @@
+import { Component, OnInit } from '@angular/core';
+
 import { CartService } from './../service/cart.service';
 import { ShoppingCartItem } from './../model/shopping-cart-item';
 import { DataService } from './../service/data.service';
-import { Component,  OnInit } from '@angular/core';
 import { ShoppingCart } from '../model/shopping-cart';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.css']
+  selector: 'app-cart-summary',
+  templateUrl: './cart-summary.component.html',
+  styleUrls: ['./cart-summary.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class CartSummaryComponent implements OnInit {
 
   myCart: ShoppingCart = new ShoppingCart(-1);
   cartEmpty = false;
@@ -53,9 +54,4 @@ export class ShoppingCartComponent implements OnInit {
     this.myCart = this.cartService.getCart();
   }
 
-
-
-
-
 }
-

@@ -43,14 +43,14 @@ img {
 
 .cart-btm-img{
 
-  background-image: url('src\assets\img\deliver.jpg');
+  background-image: url('src\assets\img\deliver.jpg' );
   background-repeat: no-repeat;
   background-position: left;
   background-size:85%;
 }
 
 .bg-color{
-  
+
   background-color: #eeeeee;
 }
 

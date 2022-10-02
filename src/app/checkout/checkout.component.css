@@ -1,0 +1,16 @@
+.checkout {
+  min-height:50vh;
+}
+
+.bg-image {
+  background-image: url('src\assets\img\food-doodle.jpg');
+  background-repeat: repeat;
+  background-size: 100%;
+  background-position: 100%;}
+
+
+.invalid-feedback
+{
+  margin-left: 25px;
+}
+

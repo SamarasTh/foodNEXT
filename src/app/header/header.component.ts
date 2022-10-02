@@ -5,6 +5,7 @@ import { ShoppingCart } from './../model/shopping-cart';
 import { Component, OnInit } from '@angular/core';
 import { ApiResponse } from '../model/apiResponse';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private service: DataService,
               private router: Router,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private authenticationService: AuthenticationService) {
       }
 
   ngOnInit() {
@@ -42,5 +44,8 @@ export class HeaderComponent implements OnInit {
       // console.log(this.selectedStore)
     }
   }
-
+  public logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['']);
+  }
 }
