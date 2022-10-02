@@ -2,11 +2,9 @@ import { CartService } from './../service/cart.service';
 import { Store } from './../model/store';
 import { DataService } from './../service/data.service';
 import { ShoppingCart } from './../model/shopping-cart';
-import { Component, HostListener, OnInit } from '@angular/core';
-import { StoreCategory } from '../model/storeCategory';
+import { Component, OnInit } from '@angular/core';
 import { ApiResponse } from '../model/apiResponse';
 import { Router } from '@angular/router';
-import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -20,17 +18,13 @@ export class HeaderComponent implements OnInit {
   stores: Store[] = [];
   selectedStore?: Store;
 
-  constructor
-    (
-      private service: DataService,
-      private router: Router,
-      public cartService: CartService) {
-
-
+  constructor(private service: DataService,
+              private router: Router,
+              private cartService: CartService) {
       }
 
   ngOnInit() {
-    this.loadCart();
+    this.myCart = this.cartService.getCart();
   }
 
   getStoreByStoreName(name: any) {
@@ -40,21 +34,6 @@ export class HeaderComponent implements OnInit {
 
       }
     );
-  }
-
-
-
-  @HostListener('window:storage')
-  onStorageChange() {
-  }
-
-
-  loadCart() {
-    let cart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
-    if (cart && cart.storeId != -1) {
-      this.myCart.storeId = cart.storeId;
-      this.myCart.items = cart.items;
-    }
   }
 
   navigateToStore() {

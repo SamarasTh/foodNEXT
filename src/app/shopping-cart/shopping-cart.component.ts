@@ -43,15 +43,16 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   reduceQuantityOrRemoveCartItem(item: ShoppingCartItem){
-      this.myCart.reduceQuantityOrRemoveItem(item);
-      if(item.quantity === 1){
+      // this.myCart.reduceQuantityOrRemoveItem(item);
+      // if(item.quantity === 1){
       this.cartService.reduceQuantityOrRemoveFromCart(item);
-    }
+      this.myCart = this.cartService.getCart();
+    // }
  }
 
   addToCart(product) {
     this.cartService.addToCart(product);
-    this.myCart.addItem(product);
+    this.myCart = this.cartService.getCart();
   }
 
 

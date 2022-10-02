@@ -37,19 +37,16 @@ export class ShoppingCart {
 
   reduceQuantityOrRemoveItem(item:ShoppingCartItem): void{
 
-    if(item.quantity ===1){
-      this.removeItemFromArray(this.items, item);
-    }else {
-      item.quantity =item.quantity - 1;
+    const index =this.items.findIndex(it => it.id==item.id);
+    if(index > -1){
+      if(this.items[index].quantity > 1){
+        this.items[index].quantity--;
+      }else {
+        this.items.splice(index, 1);
+      }
     }
   }
 
-   removeItemFromArray<T>(arr: Array<T>, value: T) {
-    const index = arr.indexOf(value);
-    if (index > -1) {
-      arr.splice(index, 1);
-    }
-  }
 
   convertProductToCartItem(product: Product): ShoppingCartItem {
     let item: ShoppingCartItem = new ShoppingCartItem(product.id);
@@ -90,5 +87,14 @@ export class ShoppingCart {
     return sum;
   }
 
+  getItemQuantityById(productId: Number): number{
+    const index = this.items.findIndex( it => it.id == productId);
+    if(index > -1){
+      return this.items[index].quantity;
+    }else {
+      return 0;
+    }
+
+  }
 
 }

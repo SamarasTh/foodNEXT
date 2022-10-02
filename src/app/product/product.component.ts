@@ -1,3 +1,4 @@
+import { ShoppingCartItem } from './../model/shopping-cart-item';
 import { CartService } from './../service/cart.service';
 import { ShoppingCart } from './../model/shopping-cart';
 import { Component, Input, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class ProductComponent implements OnInit {
   @Input()
 
   products: Product[] = [];
-  storeId: String = '';
+  storeId: number;
   myCart: ShoppingCart = new ShoppingCart(-1);
   store: Store = new Store();
   cartEmpty = false;
@@ -24,54 +25,49 @@ export class ProductComponent implements OnInit {
   constructor(private service: DataService,
     private route: ActivatedRoute,
     public router: Router,
-    private cartService: CartService)
+    private cartService: CartService){
 
-    {
     this.router.events.subscribe((e: Event) => {
       if (e instanceof NavigationEnd) {
-        let id = this.route.snapshot.paramMap.get('storeId');
-        this.storeId = id ? id : '';
-        this.getProducts(this.storeId);
+        this.ngOnInit();
       }
     });
   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('storeId');
-    this.storeId = id ? id : '';
+    this.storeId = id ? +id : -1;
     this.getProducts(this.storeId);
     this.initCart();
-    this.getStore(this.storeId);
-    this.showQuickCheckout();
-  }
-
-  showQuickCheckout(){
-    if (this.myCart.calculateTotalCartItems() > 0){
-        this.cartEmpty=true;
-    }
+    this.getStore(this.storeId.toString());
   }
 
   addToCart(product) {
     this.cartService.addToCart(product);
+    this.myCart = this.cartService.getCart();
   }
 
+  removeFromCart(product){
+    let item = this.myCart.convertProductToCartItem(product);
+    this.cartService.reduceQuantityOrRemoveFromCart(item);
+    this.myCart = this.cartService.getCart();
+  }
 
   initCart(){
-    let existingCart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
-    if(existingCart.storeId != +this.storeId){
-      //if store changed, then create new cart
-      this.myCart = new ShoppingCart(+this.storeId)
-      this.service.saveToStorage('myCart', this.myCart);
-    }else{
+    let existingCart = this.cartService.getCart();
+    if(existingCart.storeId == this.storeId){
       //if store hasn't changed, get cart of localstorage
-      this.myCart.items = existingCart.items;
+      this.myCart = existingCart;
+    }else{
+      //if store changed, then create new cart
+      this.myCart = this.cartService.initCart(this.storeId);
     }
   }
 
 
 
-  getProducts(id: String) {
-    this.service.getProductsByStoreId(id).subscribe(
+  getProducts(id: number) {
+    this.service.getProductsByStoreId(id.toString()).subscribe(
       (res: ApiResponse<Product[]>) => {
         this.products = res.data;
       }

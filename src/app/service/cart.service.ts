@@ -16,14 +16,11 @@ export class CartService {
 
   private cartSubject = new BehaviorSubject<ShoppingCart>(new ShoppingCart(-1));
   cart$ = this.cartSubject.asObservable();
-
+  myCart:ShoppingCart = new ShoppingCart(-1);
   constructor(private service: DataService) {
 
-    let myCart = new ShoppingCart(-1);
-    myCart =this.loadCart(myCart);
-    this.cartSubject.next(myCart);
-
-    // this.service.loadFromStorage('myCart')
+    this.myCart =this.getCart();
+    this.cartSubject.next(this.myCart);
   }
 
 
@@ -42,25 +39,27 @@ export class CartService {
       take(1),
       map((cart) => {
         cart.reduceQuantityOrRemoveItem(cartItem);
-        this.service.saveToStorage('myCart', cart)
-        // if(cartItem.quantity ===1){
-        //   this.service.saveToStorage('myCart', cart)
-        // }
+        this.service.saveToStorage('myCart', cart);
       }),
     ).subscribe();
   }
 
 
-
-
-
-  loadCart(myCart) {
+  getCart() {
     let cart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
-    if (cart && cart.storeId != -1) {
-      myCart.storeId = cart.storeId;
-      myCart.items = cart.items;
-
+    if (cart) {
+      this.myCart.storeId = cart.storeId;
+      this.myCart.items = cart.items;
+    } else{
+      this.myCart = this.initCart(-1);
     }
-    return myCart;
+    return this.myCart;
+  }
+
+  initCart(storeId: number){
+    let cart = new ShoppingCart(storeId);
+    cart.items = [];
+    this.service.saveToStorage('myCart', cart);
+    return cart;
   }
 }

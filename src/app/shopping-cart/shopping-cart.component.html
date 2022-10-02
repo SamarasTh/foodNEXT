@@ -30,13 +30,12 @@
               {{item.description}}
             </td>
             <td class="text-center">
-
               <span class="mr-2 pt-4">
-                <button (click)="addToCart(item)" class="btn btn-md menubtn">+ </button>
+                <button (click)="reduceQuantityOrRemoveCartItem(item)" class="btn btn-md menubtn"><b>-</b></button>
               </span>
               <b>{{item.quantity}}</b>
               <span class="ml-2">
-                <button (click)="reduceQuantityOrRemoveCartItem(item)" class="btn btn-md menubtn"><b>-</b></button>
+                <button (click)="addToCart(item)" class="btn btn-md menubtn">+</button>
               </span>
 
             </td>

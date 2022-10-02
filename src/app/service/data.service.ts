@@ -66,18 +66,8 @@ export class DataService {
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  postOrder(order): Observable<ApiResponse<{ message }>>{
+    return this.http.post<ApiResponse<{ message }>>(this.baseUrl + '/orders/checkout',order);
+  }
 
 }
