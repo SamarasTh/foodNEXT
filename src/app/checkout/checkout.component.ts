@@ -1,3 +1,4 @@
+import { CartService } from './../service/cart.service';
 import { Address } from './../model/address';
 import { Product } from './../model/product';
 import { Account } from './../model/account';
@@ -16,16 +17,10 @@ export class CheckoutComponent implements OnInit {
 
 
   account: Account = new Account(1);
-  accountId: String = '';
+  accountId: String = '1';
 
-  constructor(private service: DataService, public router: Router, private route: ActivatedRoute) {
-    this.router.events.subscribe((e: Event) => {
-      if (e instanceof NavigationEnd) {
-        let id = this.route.snapshot.paramMap.get('accountId');
-        this.accountId = id ? id : '';
-      }
-    });
-
+  constructor(private service: DataService, private cartService: CartService,
+     public router: Router, private route: ActivatedRoute) {
 
   }
 
@@ -40,6 +35,24 @@ export class CheckoutComponent implements OnInit {
         this.account = res.data;
       }
     );
+  }
+
+  placeOrder(){
+    let myCart = this.cartService.getCart();
+    let order = {
+      accId: 1,
+      addrId: 1,
+      orderItems: myCart.items,
+      paymentMethod: 'CASH'
+    }
+
+    this.service.postOrder(order).subscribe(
+      (res) => {
+        console.log(res);
+
+      }
+    );
+
   }
 
 

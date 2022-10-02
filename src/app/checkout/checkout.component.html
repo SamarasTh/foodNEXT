@@ -18,11 +18,9 @@
                             <label for="company_name">Address</label>
                             <select class="form-control" >
                               <option value="" >Select an Option</option>
-                              <option value="adrress1" >{{ account.addressList[1] }}</option>
-
+                              <option *ngFor="let address of account.addressList" value="adrress1" >{{ address.streetName + ' ' +  address.streetNumber + ', ' +  address.postalCode}}</option>
                             </select>
                           </div>
-                          <form>
                             <div class="col-lg-12">
                             </div>
                             <div class="col-lg-12">
@@ -32,8 +30,6 @@
                                   placeholder="Notes about order e:g: want to say something"></textarea>
                               </div>
                             </div>
-
-                          </form>
                         </div>
                       </div>
 
@@ -54,21 +50,21 @@
                         <form action="#">
                           <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                              value="option1" checked>
+                              value="WIRE" checked>
                             <label class="form-check-label" for="exampleRadios1">
                               Direct bank transfer
                             </label>
                           </div>
                           <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                              value="option2">
+                              value="CASH">
                             <label class="form-check-label" for="exampleRadios2">
                               Cash
                             </label>
                           </div>
                           <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                              value="option2">
+                              value="PAY_PAL">
                             <label class="form-check-label" for="exampleRadios2">
                               PayPal
                             </label>
@@ -85,7 +81,7 @@
                           this
                           website, and for other purposes described in our <a href="#">privacy policy</a>.
 
-                          <button type="submit"
+                          <button (click)="placeOrder()" type="button"
                             class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm btn-danger">Place
                             Order</button>
 

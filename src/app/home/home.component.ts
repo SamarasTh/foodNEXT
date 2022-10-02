@@ -15,9 +15,9 @@ export class HomeComponent implements OnInit {
   }
 
 
-  logout() {
+  public logout() {
     this.authenticationService.logout();
     this.router.navigate(['']);
-  } 
+  }
 }
 

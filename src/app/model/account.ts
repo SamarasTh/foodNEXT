@@ -1,3 +1,4 @@
+import { Address } from './address';
 export class Account{
 
   id: Number;
@@ -5,7 +6,7 @@ export class Account{
   password?:String;
   email?:String;
   phone?:String;
-  addressList!: any[];
+  addressList?: Address[];
   fname?:String;
   lname?:String;
   age!:Number;
