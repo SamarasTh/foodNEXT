@@ -8,9 +8,9 @@
               <h2 class="text-center ">Checkout</h2>
               <div class="row mt-2">
                 <div class="d-flex justify-content-between border-bottom">
-                <h4 class="">Billing Details </h4>
-                <h4 class="ml-5 pl-4">User Details</h4>
-              </div>
+                  <h4 class="">Billing Details </h4>
+                  <h4 class="ml-5 pl-4">User Details</h4>
+                </div>
 
 
                 <div class="col-lg-6">
@@ -60,9 +60,9 @@
 
                 <div class="product-checkout-details">
                   <div class="d-flex justify-content-between border-bottom">
-                  <h4>Payment Method</h4>
-                  <h4 >Total</h4>
-                </div>
+                    <h4>Payment Method</h4>
+                    <h4>Total</h4>
+                  </div>
                   <h6 class="text-right ">{{ myCart.totalPrice | currency:'EUR' }}</h6>
 
 
@@ -95,9 +95,25 @@
                   <div class="info mt-4 border-top pt-2 ">
 
 
-                    <button (click)="placeOrder()" type="button"
-                      class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm btn-danger">Place
+                    <button (click)="placeOrder()" href="#myModal" data-toggle="modal" type="button" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm btn-danger ">Place
                       Order</button>
+
+                    <!-- Modal HTML -->
+                    <div id="myModal" class="modal fade">
+                      <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                          <div class="modal-header justify-content-center">
+
+
+                          </div>
+                          <div class="modal-body text-center">
+                            <h4>Great!</h4>
+                            <p>Your order has been created successfully.</p>
+                            <button class="btn btn-success" data-dismiss="modal"><span>Back to home</span> </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
                 </div>

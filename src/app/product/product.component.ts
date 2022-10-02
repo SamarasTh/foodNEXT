@@ -11,7 +11,7 @@ import { Store } from '../model/store';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
   @Input()
