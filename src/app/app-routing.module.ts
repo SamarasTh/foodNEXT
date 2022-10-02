@@ -14,6 +14,7 @@ import { ProductComponent } from './product/product.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component'
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AuthGuard } from './service/auth-guard.service';
 
 const routes: Routes = [
   { path: 'products/:storeId' , component: ProductComponent},
@@ -25,14 +26,34 @@ const routes: Routes = [
   { path: 'footer' , component: FooterComponent},
   { path: 'header' , component: HeaderComponent},
   { path: 'hero' , component: HeroComponent},
-  { path: 'home' , component: HomeComponent},
+  // { path: 'home' , component: HomeComponent},
   // { path: '**' , component: HomeComponent},
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
+  // { path: '', component: LoginComponent },
+  // { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   {path: 'checkout', component: CheckoutComponent},
-  {path: 'forgot-password', component: ForgotPasswordComponent}
-
+  {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'Home'
+    }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login'
+    }
+  },
+  {
+    path: '',
+    component: LoginComponent,
+    data: {
+      title: 'Login'
+    }
+  }
 ];
 
 @NgModule({
@@ -41,6 +62,6 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, HomeComponent,LoginComponent,SignupComponent, CheckoutComponent, ForgotPasswordComponent]
+export const  routingComponents =[ ProductComponent,StoresComponent,ShoppingCartComponent, StoreCategoryComponent,AboutComponent,DeliveryComponent,FooterComponent,HeaderComponent,HeroComponent, SignupComponent, CheckoutComponent, ForgotPasswordComponent]
 
 
