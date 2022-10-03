@@ -39,7 +39,7 @@
             <td class="text-center pt-4">
               <!-- {{item.price | currency:'EUR'}} * {{item.quantity}} = -->
               <span class="pt-2">
-                {{(item.price && item.quantity)? (item.price * item.quantity | currency:'EUR') : 0 }}
+                {{(item.cost && item.quantity)? (item.cost * item.quantity | currency:'EUR') : 0 }}
               </span>
             </td>
 

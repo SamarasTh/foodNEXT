@@ -65,5 +65,6 @@ export class CartService {
 
   clearCart(){
     this.service.removeFromStorage('myCart');
+    this.initCart(-1);
   }
 }

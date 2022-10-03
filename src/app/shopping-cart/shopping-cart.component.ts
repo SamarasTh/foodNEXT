@@ -31,15 +31,16 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   loadCart() {
-    let cart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
+    let cart: ShoppingCart = this.cartService.getCart();
     if (cart && cart.storeId != -1) {
       this.myCart.storeId = cart.storeId;
       this.myCart.items = cart.items;
     }
+
   }
 
   clearCart() {
-    this.service.removeFromStorage('myCart');
+   this.cartService.clearCart();
     this.myCart = this.cartService.getCart();
   }
 

@@ -1,3 +1,4 @@
+import { Order } from './../model/order';
 import { ShoppingCartItem } from './../model/shopping-cart-item';
 import { ShoppingCart } from './../model/shopping-cart';
 import { StoreCategory } from './../model/storeCategory';
@@ -66,8 +67,8 @@ export class DataService {
 
   }
 
-  postOrder(order): Observable<ApiResponse<{ message }>>{
-    return this.http.post<ApiResponse<{ message }>>(this.baseUrl + '/orders/checkout',order);
+  postOrder(order): Observable<ApiResponse<Order>>{
+    return this.http.post<ApiResponse<Order>>(this.baseUrl + '/orders/checkout',order);
   }
 
 }

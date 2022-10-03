@@ -27,7 +27,7 @@ export class ShoppingCart {
           newItem.description = selectedItem.description;
           newItem.name = selectedItem.name;
           newItem.imgUrl = selectedItem.imgUrl;
-          newItem.price = selectedItem.price;
+          newItem.cost = selectedItem.cost;
           newItem.quantity = selectedItem.quantity ? selectedItem.quantity + 1 : 1;
           this.items[index] = newItem;
         }
@@ -54,7 +54,7 @@ export class ShoppingCart {
     item.name = product.name;
     item.imgUrl = product.imgUrl;
     item.description = product.description;
-    item.price = product.price;
+    item.cost = product.price;
 
     return item;
   }
@@ -82,7 +82,7 @@ export class ShoppingCart {
   get totalPrice() {
     let sum = 0;
     this.items.forEach(item => {
-      if (item.quantity && item.price) sum += item.quantity * item.price;
+      if (item.quantity && item.cost) sum += item.quantity * item.cost;
     });
     return sum;
   }
@@ -96,5 +96,4 @@ export class ShoppingCart {
     }
 
   }
-
 }

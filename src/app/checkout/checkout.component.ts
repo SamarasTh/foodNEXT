@@ -7,6 +7,7 @@ import { ApiResponse } from '../model/apiResponse';
 import { ShoppingCart } from '../model/shopping-cart';
 import { DataService } from '../service/data.service';
 import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Order } from '../model/order';
 
 @Component({
   selector: 'app-checkout',
@@ -16,9 +17,9 @@ import { Router, Event, NavigationEnd, ActivatedRoute } from '@angular/router';
 export class CheckoutComponent implements OnInit {
 
   myCart: ShoppingCart = new ShoppingCart(-1);
-
-  account: Account = new Account(1);
-  accountId: String = '1';
+  account: Account = new Account(2);
+  accountId: String = '2';
+  order : Order = new Order(1);
 
   constructor(private service: DataService, private cartService: CartService,
      public router: Router, private route: ActivatedRoute) {
@@ -31,11 +32,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   loadCart() {
-    let cart: ShoppingCart = this.service.loadFromStorage<ShoppingCart>('myCart');
-    if (cart && cart.storeId != -1) {
-      this.myCart.storeId = cart.storeId;
-      this.myCart.items = cart.items;
-    }
+    this.myCart= this.cartService.getCart();
+
   }
 
 
@@ -50,14 +48,19 @@ export class CheckoutComponent implements OnInit {
   placeOrder(){
     let myCart = this.cartService.getCart();
     let order = {
-      accId: 1,
-      addrId: 1,
+      // orderId:this.order.id,
+      account: this.account,
+      selectedAddressId: this.account.addressList[0].id,
+      storeId: this.myCart.storeId,
+      submitDate: Date.now(),
+      cost: myCart.totalPrice,
       orderItems: myCart.items,
       paymentMethod: 'CASH'
     }
 
     this.service.postOrder(order).subscribe(
-      (res) => {
+      (res: ApiResponse<Order>) => {
+        this.order= res.data;
         console.log(res);
 
       }

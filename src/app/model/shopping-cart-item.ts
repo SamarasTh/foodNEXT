@@ -4,7 +4,7 @@ export class ShoppingCartItem {
     name?: String;
     imgUrl?:String;
     description?: String;
-    price?: number ;
+    cost?: number ;
     quantity?: number;
 
     constructor(id:Number){
