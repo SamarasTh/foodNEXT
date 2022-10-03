@@ -1,9 +1,18 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 <section id="checkout" class=" login-section pt-80">
   <div class=" bg-image  d-flex bg-light align-items-center pt-2 ">
     <div class="container ">
       <div class="row">
         <div class=" col-xl-5 ">
-          <div class="card bg-light p-4 pb-0 billing-details  text-r">
+          <div class="card bg-light p-2 pb-0 billing-details  text-r">
             <form class="checkout-form  ">
               <h2 class="text-center ">Checkout</h2>
               <div class="row mt-2">
@@ -95,21 +104,25 @@
                   <div class="info mt-4 border-top pt-2 ">
 
 
-                    <button (click)="placeOrder()" href="#myModal" data-toggle="modal" type="button" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm btn-danger ">Place
+                    <button (click)="placeOrder()" href="#myModal" data-toggle="modal" type="button"
+                      class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm btn-danger ">Place
                       Order</button>
 
-                    <!-- Modal HTML -->
                     <div id="myModal" class="modal fade">
                       <div class="modal-dialog modal-confirm">
                         <div class="modal-content">
                           <div class="modal-header justify-content-center">
-
-
+                            <div class="icon-box">
+                              <i class="material-icons">&#xE876;</i>
+                            </div>
+                            
                           </div>
                           <div class="modal-body text-center">
                             <h4>Great!</h4>
-                            <p>Your order has been created successfully.</p>
-                            <button class="btn btn-success" data-dismiss="modal"><span>Back to home</span> </button>
+                            <p>Your order has been placed successfully.</p>
+                            <button class="btn-primary btn-block text-uppercase mb-2 shadow-sm btn-danger" routerLink="/home/categories"
+                              data-dismiss="modal"><span>Order Again</span> <i
+                                class="material-icons">&#xE5C8;</i></button>
                           </div>
                         </div>
                       </div>
