@@ -63,7 +63,8 @@
                     <h4>Payment Method</h4>
                     <h4>Total</h4>
                   </div>
-                  <h6 class="text-right ">{{ myCart.totalPrice  | currency:'EUR' }}</h6>
+
+                  <h6 class="mt-2 text-right ">{{ myCart.totalPrice  | currency:'EUR' }}</h6>
 
 
                   <div class="form-check mb-3">
@@ -107,8 +108,8 @@
 
                           </div>
                           <div class="modal-body text-center">
-                            <h4>Great!</h4>
-                            <p>Your order has been created successfully.</p>
+                            <h4>Thank you!</h4>
+                            <p>Your order has been created successfully and it will be delivered at : </p><pre><b> {{account.addressList[0].streetName}} {{account.addressList[0].streetNumber}}, {{account.addressList[0].city}}</b></pre>
                             <button class="btn btn-success" data-dismiss="modal"><span>Back to home</span> </button>
                           </div>
                         </div>
